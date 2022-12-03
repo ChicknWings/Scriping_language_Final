@@ -2,7 +2,7 @@ from turtle import *
 from gamebase import square
 from random import randrange
 
-
+#variables
 snake = [[0,0],[10,0],[20,0],[30,0],[40,0],[50,0]]
 apple_x=randrange(-200,200, 10)
 apple_y=randrange(-200,200, 10)
@@ -14,19 +14,21 @@ def change(x,y):
     aim_x=x
     aim_y=y
 
+#Logic to tell if the snake bite itself
 def inside_snake():
     for n in range(len(snake)-1):
         if snake[-1][0] == snake [n][0] and snake[-1][1] == snake[n][1]:
             return True
     return False
 
+#Logic to tell if the snake hit the wall
 def inside():
     if -210<-snake[-1][0]<= 200 and -210<=snake[-1][1]<=200:
         return True
     else :
         return False
 
-
+#Draw and clear the canvas
 def gameLoop():
     global apple_x,apple_y 
     
@@ -45,14 +47,14 @@ def gameLoop():
         square(snake[n][0],snake[n][1],10,"black")
 
 
-    
-
-    ontimer(gameLoop,150)
+    ontimer(gameLoop,100)
     update()
 
 setup(420,420,0,0)
 hideturtle()
 tracer(False)
+
+#Listen user input
 listen()
 onkey(lambda: change(0,10),"w")
 onkey(lambda: change(0,-10),"s")
